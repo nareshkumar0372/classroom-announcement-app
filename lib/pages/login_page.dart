@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dashboard_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,29 +17,35 @@ class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
 
   Future<void> registerUser() async {
-    setState(() {
-      isLoading = true;
+  try {
+
+    UserCredential userCredential =
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+
+    User? user = userCredential.user;
+
+    // Store user data in Firestore
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .set({
+      'email': emailController.text.trim(),
+      'role': 'teacher',
     });
 
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Registered successfully")),
+    );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Registered successfully")),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Register failed: $e")),
-      );
-    }
-
-    setState(() {
-      isLoading = false;
-    });
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Register failed: $e")),
+    );
   }
+}
 
   Future<void> loginUser() async {
     setState(() {
