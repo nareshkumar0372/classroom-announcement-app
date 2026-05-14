@@ -56,19 +56,19 @@ This application allows teachers to create and publish announcements in real tim
 # Application Screenshots
 
 ## Login Page
-![login](PASTE_LINK_HERE)
+![login](screenshots/login.png)
 
 ## Dashboard Page
-![dashboard](PASTE_LINK_HERE)
+![dashboard](screenshots/dashboard.png)
 
 ## Add Announcement Page
-![add announcement](PASTE_LINK_HERE)
+![add announcement](screenshots/add_announcement.png)
 
 ## View Announcement Page
-![view announcement](PASTE_LINK_HERE)
+![view announcement](screenshots/view_announcement.png)
 
 ## Announcement Detail Page
-![announcement detail](PASTE_LINK_HERE)
+![announcement detail](screenshots/announcement_detail.png)
 
 ---
 
