@@ -80,11 +80,14 @@ Used for:
 - Login Authentication
 - Session Management
 
-## Cloud Firestore
+##Cloud Firestore
 Used for:
+
+- Storing User Information
 - Storing Announcements
-- Fetching Real-time Data
+- Fetching Real-time Announcement Data
 - Managing Announcement Records
+- Retrieving User Details
 
 ---
 
